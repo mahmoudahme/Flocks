@@ -20,7 +20,7 @@ export const createproductionInventory = async(req , res , next )=>{
             await NewproductionInventory.save();
             res.status(200).json({message : "productionInventory Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -38,7 +38,7 @@ export const getproductionInventoryForUser = async(req , res , next)=>{
                 const productionInventories = await productionInventory.find({UserID : req.user.id})
                 res.status(200).json({productionInventories : productionInventories})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
