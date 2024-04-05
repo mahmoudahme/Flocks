@@ -19,7 +19,7 @@ export const createMorality = async(req , res , next )=>{
             await newMorality.save();
             res.status(200).json({message : "Morality Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -37,7 +37,7 @@ export const getMoralityForFlocks = async(req , res , next)=>{
                 const Morality = await morality.find({FlockID : req.params.flockiD})
                 res.status(200).json({Morality : Morality})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
