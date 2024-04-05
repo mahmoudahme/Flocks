@@ -22,7 +22,7 @@ export const createIncome = async(req , res , next )=>{
                 await newIncome.save();
                 res.status(200).json({message : "Income Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
@@ -39,7 +39,7 @@ export const deleteIncomes = async(req , res , next )=>{
                 await income.findOneAndDelete(incomeiD)
                 res.status(200).json({message : "Income Delted"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
@@ -55,7 +55,7 @@ export const getIncomeForFlocks = async(req , res , next)=>{
                 const Incomes = await income.find({FlockID : req.params.flockiD})
                 res.status(200).json({Incomes : Incomes})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
@@ -71,7 +71,7 @@ export const getIncomeBYid = async(req , res , next)=>{
                 const Income = await income.find({_id : req.params.incomeiD , FlockID : req.params.flockiD })
                 res.status(200).json({Income : Income})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
