@@ -15,7 +15,7 @@ export const getFlocks = async(req , res , next)=>{
                 res.status(200).json({Flocks : Flocks})
             }else{
                 logger.error("YOU ARE NOT ALLAWED");
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
                 
             } 
         })
@@ -34,7 +34,7 @@ export const getFlockBid = async(req , res , next)=>{
                 res.status(200).json({Flocks : Flocks})
             }else{
                 logger.error("YOU ARE NOT ALLAWED");
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
@@ -60,7 +60,7 @@ export const createFlocks = async(req , res , next )=>{
                 res.status(200).json({message : "Flock Created"})
             }else{
                 logger.error("YOU ARE NOT ALLAWED");
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
@@ -80,7 +80,7 @@ export const deleteFlocks = async(req , res , next )=>{
                 res.status(200).json({message : "Flock Delted"})
             }else{
                 logger.error("YOU ARE NOT ALLAWED");
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
