@@ -18,7 +18,7 @@ export const createExpensesCategory = async(req , res , next )=>{
             await newExpensesCategory.save();
             res.status(200).json({message : "ExpensesCategory Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -36,7 +36,7 @@ export const getExpensesCategory = async(req , res , next)=>{
                 const ExpensesCategories = await ExpensesCategory.find({UserID : req.user.id})
                 res.status(200).json({ExpensesCategories : ExpensesCategories})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
