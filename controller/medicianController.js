@@ -19,7 +19,7 @@ export const createMedician = async(req , res , next )=>{
             await newmedician.save();
             res.status(200).json({message : "Medician Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -37,7 +37,7 @@ export const getMedicianForFlocks = async(req , res , next)=>{
                 const medician = await Medician.find({FlockID : req.params.flockiD})
                 res.status(200).json({medician : medician})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
