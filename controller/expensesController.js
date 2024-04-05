@@ -22,7 +22,7 @@ export const createExpenses = async(req , res , next )=>{
                 await newExpenses.save();
                 res.status(200).json({message : "Expenses Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -40,7 +40,7 @@ export const deleteExpenses = async(req , res , next )=>{
                 await expenses.findOneAndDelete(expensesiD)
                 res.status(200).json({message : "expenses Deleted"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -56,7 +56,7 @@ export const getexpensesForFlocks = async(req , res , next)=>{
                 const expensess = await expenses.find({FlockID : req.params.flockiD})
                 res.status(200).json({expensess : expensess})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -73,7 +73,7 @@ export const getExpensesBYid = async(req , res , next)=>{
                 const expensess = await expenses.find({_id : req.params.expensesiD , FlockID : req.params.flockiD })
                 res.status(200).json({expensess : expensess})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
