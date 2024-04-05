@@ -18,7 +18,7 @@ export const createProductionCategory = async(req , res , next )=>{
             await newProductionCategory.save();
             res.status(200).json({message : "ProductionCategory Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -36,7 +36,7 @@ export const getProductionCategory = async(req , res , next)=>{
                 const ProductionCategory = await productionCategory.find({UserID : req.user.id})
                 res.status(200).json({ProductionCategory : ProductionCategory})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
