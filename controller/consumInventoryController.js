@@ -20,7 +20,7 @@ export const createconsumptionInventory = async(req , res , next )=>{
             await NewconsumptionInventory.save();
             res.status(200).json({message : "consumptionInventory Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -38,7 +38,7 @@ export const getconsumptionInventoryForUser = async(req , res , next)=>{
                 const consumptionInventories = await consumptionInventory.find({UserID : req.user.id})
                 res.status(200).json({consumptionInventories : consumptionInventories})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
