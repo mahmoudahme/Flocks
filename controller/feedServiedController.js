@@ -20,7 +20,7 @@ export const createFeedServied = async(req , res , next )=>{
             await newFeedServied.save();
             res.status(200).json({message : "FeedServied Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -38,7 +38,7 @@ export const getFeedServiedForFlocks = async(req , res , next)=>{
                 const FeedServied = await feedServed.find({FlockID : req.params.flockiD})
                 res.status(200).json({FeedServied : FeedServied})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
