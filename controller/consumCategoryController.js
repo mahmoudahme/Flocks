@@ -22,7 +22,7 @@ export const createConsumptionCategory = async(req , res , next )=>{
             res.status(200).json({message : "ConsumptionCategory Created"})
             }else{
                 logger.error("You are not User")
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -43,7 +43,7 @@ export const getConsumptionCategory = async(req , res , next)=>{
                 res.status(200).json({ConsumptionCategory : ConsumptionCategory})
             }else{
                 logger.error("You are not User")
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
