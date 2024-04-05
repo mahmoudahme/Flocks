@@ -21,7 +21,7 @@ export const createVaccination = async(req , res , next )=>{
             await newVaccination.save();
             res.status(200).json({message : "Vaccination Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -39,7 +39,7 @@ export const getVaccinationForFlocks = async(req , res , next)=>{
                 const Vaccinations = await Vaccination.find({FlockID : req.params.flockiD})
                 res.status(200).json({Vaccinations : Vaccinations})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
