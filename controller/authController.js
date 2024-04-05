@@ -41,7 +41,7 @@ export const login = async(req , res , next )=>{
         } 
         const isPasswordCorrect = await bcrypt.compare(req.body.password,user.password);
         if(!isPasswordCorrect){
-            return next(new ApiError("password isn't correct" , 400)) ; 
+            return next(new ApiError("password isn't correct" , 401)) ; 
         }
         const token = JsonWebToken.sign({id : user._id , isAdmin : user.isAdmin} , process.env.JWT) ;
         const { password, isAdmin, ...otherDetails } = user._doc; 
