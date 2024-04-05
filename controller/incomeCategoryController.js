@@ -18,7 +18,7 @@ export const createIncomeCategory = async(req , res , next )=>{
             await newincomeCategory.save();
             res.status(200).json({message : "incomeCategory Created"})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
             
         })
@@ -36,7 +36,7 @@ export const getIncomeCategory = async(req , res , next)=>{
                 const incomeCategories = await incomeCategory.find({UserID : req.user.id})
                 res.status(200).json({incomeCategories : incomeCategories})
             }else{
-                return next(new ApiError(`You are not user` , 404))
+                return next(new ApiError(`You are not user` , 401))
             }
         })
     } catch (error) {
