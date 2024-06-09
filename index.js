@@ -7,6 +7,7 @@ import { DBConnection } from "./config/DbConnection.js";
 import { globalError } from "./middleware/errorMiddleware.js";
 import authRouter from "./router/authRouter.js"
 import userRouter from "./router/userRouter.js"
+import homeRouter from "./router/homeRouter.js"
 import flockRouter from "./router/flockRouter.js"
 import incomeRouter from "./router/incomeRouter.js"
 import expensesRouter from "./router/expensesRouter.js"
@@ -35,6 +36,7 @@ if(process.env.NODE_ENV == "development"){
 
 app.use("/api/auth" , authRouter)
 app.use("/api/user" , userRouter)
+app.use("/api/home" , homeRouter)
 app.use("/api/flock" , flockRouter)
 app.use("/api/income" , incomeRouter)
 app.use("/api/expenses" , expensesRouter)
