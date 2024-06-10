@@ -15,10 +15,10 @@ export const Data = async(req, res , next)=>{
                 const row = {};
                 $(element).find('td').each((i, elem) => {
                     const cellValue = $(elem).text().trim();
-                    if (i === 0) row["الصنف"] = cellValue;
-                    if (i === 1) row["سوق نتفيذ المؤشر"] = cellValue;
-                    if (i === 2) row["أعلي"] = cellValue;
-                    if (i === 3) row["أقل"] = cellValue;
+                        if (i === 0) row["الصنف"] = cellValue;
+                        if (i === 1) row["سوق"] = cellValue;
+                        if (i === 2) row["نتفيذ"] = cellValue;
+                        if (i === 3) row["المؤشر"] = cellValue;
                 });
                 rows.push(row);
             });
