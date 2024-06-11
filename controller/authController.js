@@ -46,7 +46,7 @@ export const login = async(req , res , next )=>{
         const token = JsonWebToken.sign({id : user._id , isAdmin : user.isAdmin} , process.env.JWT) ;
         const { password, isAdmin, ...otherDetails } = user._doc; 
         logger.info("User LogIn")
-        res.cookie("accessToken" , token , {httpOnly: true,}).status(200).json({ details: { ...otherDetails }, isAdmin });
+        res.cookie("accessToken" , token , {httpOnly: true,}).status(200).json({ details: { ...otherDetails }, isAdmin , token : token });
         
     } catch (error) {
         logger.error("There is error" , error)
