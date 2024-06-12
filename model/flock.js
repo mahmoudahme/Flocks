@@ -6,10 +6,10 @@ const FlockSchema = new mongoose.Schema({
         type : String ,
         required: true
     } , 
-    date : {
-        type : Date ,
-        required  :true 
-    },
+    //date : {
+    //    type : Date ,
+    //    required  :true 
+   // },
     number : {
         type :Number ,
         required : true  
