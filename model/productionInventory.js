@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
-
+function formatDateToDateOnly() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر من 0 إلى 11 لذا نضيف 1
+  const day = String(now.getDate()).padStart(2, '0');
+  
+  // إعادة التاريخ في صيغة "yyyy-mm-dd"
+  return new Date(`${year}-${month}-${day}`);
+}
 const productionInventorySchema = new mongoose.Schema({
     Name : {
         type : String ,
@@ -7,20 +15,15 @@ const productionInventorySchema = new mongoose.Schema({
     } , 
     date : {
         type : Date ,
-        required: true
+        default: formatDateToDateOnly
     } , 
     Price : {
-        type : Number ,
-        required: true
+        type : Number 
     } , 
     Quantity : {
         type : Number ,
         required: true
-    } , 
-    Description : {
-        type : String ,
-        required: true
-    } , 
+    } ,  
 Category: { 
         type : String ,
         required: true 
