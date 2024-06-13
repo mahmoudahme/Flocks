@@ -15,8 +15,8 @@ export const createproductionInventory = async(req , res , next )=>{
                     Price : req.body.Price, 
                     Quantity: req.body.Quantity,
                     Description: req.body.Description ,
-req.body.Category,
-req.body.date,
+Category : req.body.Category,
+date : req.body.date,
                     UserID : req.user.id
             }) 
             await NewproductionInventory.save();
