@@ -53,3 +53,14 @@ export const login = async(req , res , next )=>{
         return next(new ApiError(`System Error ${error}` , 404))
     }
 }
+
+export const logout = async (req, res, next) => {
+    try {
+      // Clear the token from the cookies
+      res.cookie('accessToken', '', { httpOnly: true, expires: new Date(0) });
+      res.status(200).json({ message: 'Logged out successfully' });
+    } catch (err) {
+      next(err);
+    }
+  };
+  
