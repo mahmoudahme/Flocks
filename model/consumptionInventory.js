@@ -5,10 +5,10 @@ const consumptionInventorySchema = new mongoose.Schema({
         type : String ,
         required: true
     } , 
-    // date : {
-    //     type : Date ,
-    //     required: true
-    // } , 
+     date : {
+       type : Date ,
+       required: true
+     } , 
     Price : {
         type : Number ,
         required: true
@@ -21,7 +21,10 @@ const consumptionInventorySchema = new mongoose.Schema({
         type : String ,
         required: true
     } , 
-
+    Category: { 
+        type : String ,
+        required: true 
+    },
     UserID : {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
