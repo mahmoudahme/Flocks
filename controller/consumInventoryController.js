@@ -15,8 +15,8 @@ export const createconsumptionInventory = async(req , res , next )=>{
                     Price : req.body.Price, 
                     Quantity: req.body.Quantity,
                     Description: req.body.Description ,
-req.body.Category
-req.body.date
+req.body.Category,
+req.body.date,
                     UserID : req.user.id
             }) 
             await NewconsumptionInventory.save();
