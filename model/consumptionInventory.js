@@ -6,7 +6,7 @@ const consumptionInventorySchema = new mongoose.Schema({
         required: true
     } , 
      date : {
-       type : Date ,
+       type : String ,
        default:  () => {
       const now = new Date();
       const year = now.getFullYear();
@@ -14,7 +14,7 @@ const consumptionInventorySchema = new mongoose.Schema({
       const day = String(now.getDate()).padStart(2, '0');
       
       // إعادة التاريخ في صيغة "yyyy-mm-dd"
-      return new Date(`${year}-${month}-${day}`);
+      return `${year}-${month}-${day}`;
      } 
      }, 
     Price : {
