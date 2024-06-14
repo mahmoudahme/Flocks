@@ -15,7 +15,8 @@ const consumptionInventorySchema = new mongoose.Schema({
       
       // إعادة التاريخ في صيغة "yyyy-mm-dd"
       return new Date(`${year}-${month}-${day}`);
-     } , 
+     } 
+     }, 
     Price : {
         type : Number 
     } , 
