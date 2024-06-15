@@ -45,7 +45,7 @@ export const getMoralityForFlocks = async(req , res , next)=>{
     }
 }
 
-export const deletemoralityID = async(req , res , next )=>{
+export const deletemorality = async(req , res , next )=>{
     try {
         const flockiD = req.params.flockiD ;
         const moralityID = req.params.moralityID ;
