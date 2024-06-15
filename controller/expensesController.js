@@ -55,7 +55,7 @@ export const getexpensesForFlocks = async(req , res , next)=>{
             if(req.user){
                 const expensess = await expenses.find({FlockID : req.params.flockiD})
  console.log(expensess)
-              res.status(200).json({expensess : expensess})
+              res.status(200).json({Expenses : expensess})
             }else{
                 return next(new ApiError(`You are not user` , 401))
             }
@@ -72,7 +72,7 @@ export const getExpensesBYid = async(req , res , next)=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const expensess = await expenses.find({_id : req.params.expensesiD , FlockID : req.params.flockiD })
-                res.status(200).json({expensess : expensess})
+                res.status(200).json({Expenses : expensess})
             }else{
                 return next(new ApiError(`You are not user` , 401))
             }
