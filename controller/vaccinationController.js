@@ -37,7 +37,7 @@ export const getVaccinationForFlocks = async(req , res , next)=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const Vaccinations = await Vaccination.find({FlockID : req.params.flockiD})
-                res.status(200).json({Vaccinations : Vaccinations})
+                res.status(200).json({Vaccination : Vaccinations})
             }else{
                 return next(new ApiError(`You are not user` , 401))
             }
