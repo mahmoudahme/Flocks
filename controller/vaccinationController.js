@@ -47,7 +47,7 @@ export const getVaccinationForFlocks = async(req , res , next)=>{
     }
 }
 
-export const deleteIncomes = async(req , res , next )=>{
+export const deleteVaccination = async(req , res , next )=>{
     try {
         const flockiD = req.params.flockiD ;
         const VaccinationID = req.params.VaccinationID ;
