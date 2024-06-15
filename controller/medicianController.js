@@ -44,3 +44,20 @@ export const getMedicianForFlocks = async(req , res , next)=>{
         return next(new ApiError(`System Error ${error}` , 404))
     }
 }
+
+export const deleteMedician = async(req , res , next )=>{
+    try {
+        const flockiD = req.params.flockiD ;
+        const MedicianID = req.params.MedicianID ;
+        verifyToken(req , res , async()=>{
+            if(req.user){
+                await Medician.findOneAndDelete(MedicianID)
+                res.status(200).json({message : "Medician Delted"})
+            }else{
+                return next(new ApiError(`You are not user` , 401))
+            }
+        })
+    } catch (error) {
+        return next(new ApiError(`System Error ${error}` , 404))
+    }
+}
