@@ -53,7 +53,7 @@ export const getIncomeForFlocks = async(req , res , next)=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const Incomes = await income.find({FlockID : req.params.flockiD})
-                res.status(200).json({Incomes : Incomes})
+                res.status(200).json({Income : Incomes})
             }else{
                 return next(new ApiError(`You are not user` , 401))
             }
