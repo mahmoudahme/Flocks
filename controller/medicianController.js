@@ -35,7 +35,7 @@ export const getMedicianForFlocks = async(req , res , next)=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const medician = await Medician.find({FlockID : req.params.flockiD})
-                res.status(200).json({medician : medician})
+                res.status(200).json({Medicine : medician})
             }else{
                 return next(new ApiError(`You are not user` , 401))
             }
