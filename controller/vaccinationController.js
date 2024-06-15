@@ -46,3 +46,20 @@ export const getVaccinationForFlocks = async(req , res , next)=>{
         return next(new ApiError(`System Error ${error}` , 404))
     }
 }
+
+export const deleteIncomes = async(req , res , next )=>{
+    try {
+        const flockiD = req.params.flockiD ;
+        const VaccinationID = req.params.VaccinationID ;
+        verifyToken(req , res , async()=>{
+            if(req.user){
+                await Vaccination.findOneAndDelete(VaccinationID)
+                res.status(200).json({message : "Vaccination Delted"})
+            }else{
+                return next(new ApiError(`You are not user` , 401))
+            }
+        })
+    } catch (error) {
+        return next(new ApiError(`System Error ${error}` , 404))
+    }
+}
