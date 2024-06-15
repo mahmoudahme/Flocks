@@ -35,7 +35,7 @@ export const getMoralityForFlocks = async(req , res , next)=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const Morality = await morality.find({FlockID : req.params.flockiD})
-                res.status(200).json({Morality : Morality})
+                res.status(200).json({Morlaity : Morality})
             }else{
                 return next(new ApiError(`You are not user` , 401))
             }
