@@ -28,6 +28,9 @@ const consumptionInventorySchema = new mongoose.Schema({
         type : String ,
         required: true 
     },
+    Prercent: {
+        type : Number 
+    } ,
     UserID : {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
