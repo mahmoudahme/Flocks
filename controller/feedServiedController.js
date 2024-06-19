@@ -10,17 +10,30 @@ export const createFeedServied = async(req , res , next )=>{
     try {
         verifyToken(req , res , async()=>{
             if(req.user){
-                const newFeedServied = new feedServed({
-                Name :req.body.Name ,
-                Category : req.body.Category, 
-                Amount: req.body.Amount,
-                Note: req.body.Note,
-                FlockID: req.params.id 
-            }) 
-            await newFeedServied.save();
-            res.status(200).json({message : "FeedServied Created"})
+                const conInventory = await consumptionInventory.findOne({Name : req.body.Name}) ;
+                if(conInventory.Quantity > req.body.Amount){
+                    const newFeedServied = new feedServed({
+                        Name :req.body.Name ,
+                        Category : req.body.Category, 
+                        Amount: req.body.Amount,
+                        Note: req.body.Note,
+                        FlockID: req.params.id 
+                    }) 
+                    await newFeedServied.save();
+                    res.status(200).json({message : "FeedServied Created"})
+                    const Quantity = conInventory.Quantity ;
+                    await consumptionInventory.findByIdAndUpdate(
+                        conInventory.id, 
+                        { Quantity:conInventory.Quantity - req.body.Amount , 
+                          Prercent : ((conInventory.Quantity - req.body.Amount) /Quantity)*100 
+                        },
+                        { new: true }
+                    )
+                }else{
+                    res.status(200).json({message : "the Quantity in the ConsumInventory isn't enough"})
+                }
             }else{
-                return next(new ApiError(`You are not user` , 401))
+                return next(new ApiError(`You are not user` , 404))
             }
             
         })
