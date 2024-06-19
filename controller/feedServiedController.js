@@ -1,5 +1,6 @@
 import feedServed from "../model/feedServed.js";
 import morality from "../model/feedServed.js";
+import consumptionInventory from "../model/consumptionInventory.js";
 import {ApiError} from "../Utils/apiError.js";
 import { verifyToken } from "../Utils/verifyToken.js";
 import dotenv from "dotenv" ;
