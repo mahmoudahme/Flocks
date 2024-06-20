@@ -10,8 +10,7 @@ export const InconmeFin = async(req , res , next)=>{
         const flockiD = req.params.flockiD ;
         verifyToken(req , res , async()=>{
             if(req.user){
-                const Incomes = await income.find({flockiD : flockiD})
-                console.log(Incomes)
+                const Incomes = await income.find({FlockID : flockiD})
                 var fini = 0; 
                 for(var i = 0 ; i < Incomes.length ; i++){
                     fini += Incomes[i].Amount ;
