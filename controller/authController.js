@@ -21,7 +21,6 @@ export const register = async (req , res , next )=>{
             email: req.body.email,
             password: hashedPassword,
             flockName : req.body.flockName,
-            Country : req.body.Country,
             City : req.body.City,
             isAdmin :req.body.isAdmin
         });
