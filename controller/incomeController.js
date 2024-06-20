@@ -35,7 +35,7 @@ export const deleteIncomes = async(req , res , next )=>{
         const incomeiD = req.params.incomeiD ;
         verifyToken(req , res , async()=>{
             if(req.user){
-                await income.findOneAndDelete(incomeiD)
+                await income.findByIdAndDelete(incomeiD)
                 res.status(200).json({message : "Income Delted"})
             }else{
                 return next(new ApiError(`You are not user` , 401))
