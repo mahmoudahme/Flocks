@@ -12,7 +12,7 @@ export const createFeedServied = async(req , res , next )=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const conInventory = await consumptionInventory.findOne({Name : req.body.Name}) ;
-                if(conInventory.Quantity > req.body.Amount){
+                if(conInventory.Quantity >= req.body.Amount){
                     const newFeedServied = new feedServed({
                         Name :req.body.Name ,
                         Category : req.body.Category, 
