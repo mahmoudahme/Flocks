@@ -27,6 +27,7 @@ import expensesCategoryRouter from "./router/expensesCategoryRouter.js"
 import consumCategoryRouter from "./router/consumCategoryRouter.js"
 import productionCategoryRouter from "./router/productionCategoryRouter.js"
 import birdsRouter from "./router/birdsRouter.js"
+import incomeFinRouter from "./router/incomeFinRouter.js"
 import cookieParser from "cookie-parser";
 configDotenv({path : "config/config.env"})
 const app = express() ;
@@ -57,6 +58,7 @@ app.use("/api/expensesCategory" , expensesCategoryRouter)
 app.use("/api/consumCategory" , consumCategoryRouter)
 app.use("/api/ProCategory" , productionCategoryRouter)
 app.use("/api/birds" , birdsRouter)
+app.use("/api/inFin" , incomeFinRouter)
 
 //global error Middleware 
 app.use(globalError);
