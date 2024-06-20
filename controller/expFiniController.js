@@ -10,10 +10,10 @@ export const expensesFin = async(req , res , next)=>{
         const flockiD = req.params.flockiD ;
         verifyToken(req , res , async()=>{
             if(req.user){
-                const expenses = await expenses.find({FlockID : flockiD})
+                const expensesss = await expenses.find({FlockID : flockiD})
                 var fini = 0; 
-                for(var i = 0 ; i < expenses.length ; i++){
-                    fini += expenses[i].Amount ;
+                for(var i = 0 ; i < expensesss.length ; i++){
+                    fini += expensesss[i].Amount ;
                 }
                 res.status(200).json({Number : fini})
                 
