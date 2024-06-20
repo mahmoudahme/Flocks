@@ -51,7 +51,7 @@ export const deletemorality = async(req , res , next )=>{
         const moralityID = req.params.moralityID ;
         verifyToken(req , res , async()=>{
             if(req.user){
-                await morality.findOneAndDelete(moralityID)
+                await morality.findByIdAndDelete(moralityID)
                 res.status(200).json({message : "morality Delted"})
             }else{
                 return next(new ApiError(`You are not user` , 401))
