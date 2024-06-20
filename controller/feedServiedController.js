@@ -22,11 +22,11 @@ export const createFeedServied = async(req , res , next )=>{
                     }) 
                     await newFeedServied.save();
                     res.status(200).json({message : "FeedServied Created"})
-                    const Quantity = conInventory.Quantity2 ;
+                    const Quantity2 = conInventory.Quantity2 ;
                     await consumptionInventory.findByIdAndUpdate(
                         conInventory.id, 
                         { Quantity:conInventory.Quantity - req.body.Amount , 
-                          Prercent : ((conInventory.Quantity - req.body.Amount) /Quantity)*100 
+                          Prercent : ((conInventory.Quantity - req.body.Amount) /Quantity2)*100 
                         },
                         { new: true }
                     )
