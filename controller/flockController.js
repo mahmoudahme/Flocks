@@ -8,13 +8,19 @@ dotenv.config({path : 'config/config.env'});
 
 export const updateFlock = async(req, res , next )=>{
     try {
-        const flockId = req.params.id ;
-        const newDataOfFlock = await flock.findByIdAndUpdate( 
-            flockId, 
-            { $set: req.body },
-            { new: true }
-        );
-        res.status(200).json({Flock : newDataOfFlock});
+        verifyToken(req , res , async()=>{
+            if(req.user){
+                const flockId = req.params.id ;
+                const newDataOfFlock = await flock.findByIdAndUpdate( 
+                    flockId, 
+                    { $set: req.body },
+                    { new: true }
+                );
+                res.status(200).json({Flock : newDataOfFlock});
+            }else{
+                return next(new ApiError(`You are not user` , 401))
+            }
+            })
     } catch (error) {
         return next(new ApiError(`System Error ${error}`) , 404);
     }
