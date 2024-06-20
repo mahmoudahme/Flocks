@@ -15,7 +15,8 @@ export const createconsumptionInventory = async(req , res , next )=>{
                     Price : req.body.Price, 
                     Quantity: req.body.Quantity,
                     Category : req.body.Category ,
-                    Prercent : (req.body.Quantity / req.body.Quantity) *100 , 
+                    Quantity2 : req.body.Quantity 
+                    Prercent : (req.body.Quantity / req.body.Quantity2) *100 , 
                     UserID : req.user.id
             }) 
             await NewconsumptionInventory.save();
