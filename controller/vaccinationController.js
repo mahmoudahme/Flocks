@@ -1,4 +1,5 @@
 import Vaccination from "../model/vaccination.js";
+import consumptionInventory from "../model/consumptionInventory.js";
 import {ApiError} from "../Utils/apiError.js";
 import { verifyToken } from "../Utils/verifyToken.js";
 import dotenv from "dotenv" ;
@@ -9,17 +10,33 @@ export const createVaccination = async(req , res , next )=>{
     try {
         verifyToken(req , res , async()=>{
             if(req.user){
-                console.log(req.body)
-                const newVaccination = new Vaccination({
-                Name :req.body.Name ,
-                breed : req.body.breed, 
-                VaccinationType: req.body.VaccinationType,
-                Method: req.body.Method,
-                discription: req.body.discription,
-                FlockID: req.params.id 
-            }) 
-            await newVaccination.save();
-            res.status(200).json({message : "Vaccination Created"})
+                 const conInventory = await consumptionInventory.findOne({Name : req.body.Name}) ;
+                if(conInventory){
+                    if(conInventory.Quantity >= 1){
+                        const newVaccination = new Vaccination({
+                            Name :req.body.Name ,
+                            breed : req.body.breed, 
+                            VaccinationType: req.body.VaccinationType,
+                            Method: req.body.Method,
+                            discription: req.body.discription,
+                            FlockID: req.params.id 
+                        }) 
+                        await newVaccination.save();
+                        res.status(200).json({message : "Vaccination Created"})
+                        const Quantity2 = conInventory.Quantity2 ;
+                         await consumptionInventory.findByIdAndUpdate(
+                            conInventory.id, 
+                            { Quantity:conInventory.Quantity - 1 , 
+                              Prercent : ((conInventory.Quantity - 1) /Quantity2)*100 
+                            },
+                            { new: true }
+                        )
+                    }else{
+                        res.status(200).json({message : "this Quantity isn't enough"})
+                    }
+                }else{
+                     res.status(200).json({message : "this name doesn't Exist"})
+                }
             }else{
                 return next(new ApiError(`You are not user` , 401))
             }
