@@ -22,6 +22,14 @@ const UserSchema = new mongoose.Schema(
        type : String , 
        required: true 
     } ,
+    Country :{
+       type : String , 
+       required: true 
+    },
+    City :{
+       type : String , 
+       required: true 
+    },
     isAdmin: {
       type: Boolean,
       default: false,
