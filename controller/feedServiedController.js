@@ -66,7 +66,7 @@ export const deleteFeedServied = async(req , res , next )=>{
         const feedServedID = req.params.feedServedID ;
         verifyToken(req , res , async()=>{
             if(req.user){
-                await feedServed.findOneAndDelete(feedServedID)
+                await feedServed.findByIdAndDelete(feedServedID)
                 res.status(200).json({message : "feedServedID Deleted"})
             }else{
                 return next(new ApiError(`You are not user` , 401))
