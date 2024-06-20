@@ -23,7 +23,11 @@ const consumptionInventorySchema = new mongoose.Schema({
     Quantity : {
         type : Number ,
         required: true
-    } , 
+    } ,
+    Quantity2 : {
+        type : Number ,
+        required: true
+    }, 
     Category: { 
         type : String ,
         required: true 
