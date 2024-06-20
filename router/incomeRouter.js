@@ -7,6 +7,6 @@ const router = express.Router();
 router.get("/:flockiD/:incomeiD" , getIncomeBYid)
 router.get("/:flockiD", getIncomeForFlocks )
 router.post("/create/:id" , createIncome);
-router.delete("/delete/:flockiD/:incomeiD" , deleteIncomes );
+router.delete("/delete/:incomeiD" , deleteIncomes );
 
 export default router ; 
