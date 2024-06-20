@@ -15,7 +15,7 @@ export const InconmeFin = async(req , res , next)=>{
                 for(var i = 0 ; i < Incomes.length ; i ++){
                     fini += Incomes[i].Amount ;
                 }
-                res.status(200).json({Incomes : Incomes})
+                res.status(200).json({Number : fini})
                 
             }else{
                 return next(new ApiError(`You are not user` , 404))
