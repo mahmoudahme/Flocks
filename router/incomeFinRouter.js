@@ -3,6 +3,6 @@ import {InconmeFin} from "../controller/incomeFinController.js";
 
 const router = express.Router();
 
-router.get("/" , InconmeFin)
+router.get("/:flockiD" , InconmeFin)
 
 export default router ; 
