@@ -37,7 +37,7 @@ export const deleteExpenses = async(req , res , next )=>{
         const expensesiD = req.params.expensesiD ;
         verifyToken(req , res , async()=>{
             if(req.user){
-                await expenses.findOneAndDelete(expensesiD)
+                await expenses.findByIdAndDelete(expensesiD)
                 res.status(200).json({message : "expenses Deleted"})
             }else{
                 return next(new ApiError(`You are not user` , 401))
