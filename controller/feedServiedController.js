@@ -12,7 +12,8 @@ export const createFeedServied = async(req , res , next )=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const conInventory = await consumptionInventory.findOne({Name : req.body.Name}) ;
-                const Quan = conInventory.Quantity ;
+                console.log(conInventory);
+                console.log(conInventory.Quantity) ;
                 if(Quan >= req.body.Amount && conInventory.Name == req.body.Name){
                     const newFeedServied = new feedServed({
                         Name :req.body.Name ,
