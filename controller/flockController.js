@@ -5,6 +5,22 @@ import dotenv from "dotenv" ;
 import Logger from "../Services/logger.js"
 const logger = new Logger("FlockControllers") ;
 dotenv.config({path : 'config/config.env'});
+
+export const updateFlock = async(req, res , next )=>{
+    try {
+        const flockId = req.params.id ;
+        const newDataOfFlock = await flock.findByIdAndUpdate( 
+            flockId, 
+            { $set: req.body },
+            { new: true }
+        );
+        res.status(200).json({Flock : newDataOfFlock});
+    } catch (error) {
+        return next(new ApiError(`System Error ${error}`) , 404);
+    }
+}
+
+
 //////////////////////////////////////////////Get Flock For User//////////////////////////////////////////
 export const getFlocks = async(req , res , next)=>{
     try {
