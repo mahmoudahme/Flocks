@@ -32,7 +32,6 @@ export const createIncome = async(req , res , next )=>{
 //////////////////////////////////////////////Delete INCOME //////////////////////////////////////////////
 export const deleteIncomes = async(req , res , next )=>{
     try {
-        const flockiD = req.params.flockiD ;
         const incomeiD = req.params.incomeiD ;
         verifyToken(req , res , async()=>{
             if(req.user){
