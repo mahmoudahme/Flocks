@@ -1,8 +1,8 @@
 import  express  from "express";
-import {getBirdsOfFlocks} from "../controller/birdsController.js";
+import {InconmeFin} from "../controller/incomeFinController.js";
 
 const router = express.Router();
 
-router.get("/" , getBirdsOfFlocks)
+router.get("/" , InconmeFin)
 
 export default router ; 
