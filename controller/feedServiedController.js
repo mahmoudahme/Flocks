@@ -12,28 +12,31 @@ export const createFeedServied = async(req , res , next )=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 const conInventory = await consumptionInventory.findOne({Name : req.body.Name}) ;
-                console.log(conInventory);
-                console.log(conInventory.Quantity) ;
-                if(Quan >= req.body.Amount && conInventory.Name == req.body.Name){
-                    const newFeedServied = new feedServed({
-                        Name :req.body.Name ,
-                        Category : req.body.Category, 
-                        Amount: req.body.Amount,
-                        Note: req.body.Note,
-                        FlockID: req.params.id 
-                    }) 
-                    await newFeedServied.save();
-                    res.status(200).json({message : "FeedServied Created"})
-                    const Quantity2 = conInventory.Quantity2 ;
-                    await consumptionInventory.findByIdAndUpdate(
-                        conInventory.id, 
-                        { Quantity:conInventory.Quantity - req.body.Amount , 
-                          Prercent : ((conInventory.Quantity - req.body.Amount) /Quantity2)*100 
-                        },
-                        { new: true }
-                    )
+                if(conInventory){
+                    
+                    if(conInventory.Quantity >= req.body.Amount){
+                        const newFeedServied = new feedServed({
+                            Name :req.body.Name ,
+                            Category : req.body.Category, 
+                            Amount: req.body.Amount,
+                            Note: req.body.Note,
+                            FlockID: req.params.id 
+                        }) 
+                        await newFeedServied.save();
+                        res.status(200).json({message : "FeedServied Created"})
+                        const Quantity2 = conInventory.Quantity2 ;
+                        await consumptionInventory.findByIdAndUpdate(
+                            conInventory.id, 
+                            { Quantity:conInventory.Quantity - req.body.Amount , 
+                              Prercent : ((conInventory.Quantity - req.body.Amount) /Quantity2)*100 
+                            },
+                            { new: true }
+                        )
+                    }else{
+                        res.status(200).json({message : "this Quantity isn't enough"})
+                    }
                 }else{
-                    res.status(200).json({message : "this Quantity isn't enough or the this name doesn't Exist"})
+                     res.status(200).json({message : "this name doesn't Exist"})
                 }
             }else{
                 return next(new ApiError(`You are not user` , 404))
