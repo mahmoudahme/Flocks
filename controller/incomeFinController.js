@@ -12,7 +12,7 @@ export const InconmeFin = async(req , res , next)=>{
             if(req.user){
                 const Incomes = await income.find({flockiD : flockiD})
                 var fini = 0; 
-                for(var i = 0 ; i < Incomes.length ; i ++){
+                for(var i = 0 ; i < Incomes.length ; i++){
                     fini += Incomes[i].Amount ;
                 }
                 res.status(200).json({Number : fini})
