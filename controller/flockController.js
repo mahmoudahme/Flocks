@@ -75,6 +75,7 @@ export const createFlocks = async(req , res , next )=>{
                     Breed :req.body.Breed ,
                     CostPerBirds: req.body.CostPerBirds,
                     Supplier: req.body.Supplier,
+                    Active : req.body.Active ,
                     UserID: req.user.id 
                 })
                 await newFlock.save();
