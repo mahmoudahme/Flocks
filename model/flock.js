@@ -26,6 +26,10 @@ const FlockSchema = new mongoose.Schema({
         type : String ,
         required: true
     } ,
+    Active : {
+        type : Boolean,
+        required : true
+    } , 
     UserID : {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
