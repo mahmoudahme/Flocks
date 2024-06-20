@@ -53,7 +53,7 @@ export const deleteVaccination = async(req , res , next )=>{
         const VaccinationID = req.params.VaccinationID ;
         verifyToken(req , res , async()=>{
             if(req.user){
-                await Vaccination.findOneAndDelete(VaccinationID)
+                await Vaccination.findByIdAndDelete(VaccinationID)
                 res.status(200).json({message : "Vaccination Delted"})
             }else{
                 return next(new ApiError(`You are not user` , 401))
