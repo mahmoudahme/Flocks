@@ -29,6 +29,7 @@ import productionCategoryRouter from "./router/productionCategoryRouter.js"
 import birdsRouter from "./router/birdsRouter.js"
 import incomeFinRouter from "./router/incomeFinRouter.js"
 import expensFiniRouter from "./router/expensFiniRouter.js"
+import morRouter from "./router/morRouter.js"
 expensFiniRouter
 import cookieParser from "cookie-parser";
 configDotenv({path : "config/config.env"})
@@ -62,6 +63,11 @@ app.use("/api/ProCategory" , productionCategoryRouter)
 app.use("/api/birds" , birdsRouter)
 app.use("/api/inFin" , incomeFinRouter)
 app.use("/api/exFin" , expensFiniRouter)
+app.use("/api/numOfDead" , morRouter)
+
+
+
+
 //global error Middleware 
 app.use(globalError);
 
