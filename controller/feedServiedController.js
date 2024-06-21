@@ -11,7 +11,7 @@ export const createFeedServied = async(req , res , next )=>{
     try {
         verifyToken(req , res , async()=>{
             if(req.user){
-                const conInventory = await consumptionInventory.findOne({Name : req.body.Name}) ;
+                const conInventory = await consumptionInventory.findOne({Name : req.body.Name , UserID : req.user.id}) ;
                 if(conInventory){
                     
                     if(conInventory.Quantity >= req.body.Amount){
