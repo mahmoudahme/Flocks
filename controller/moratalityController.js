@@ -13,7 +13,7 @@ export const moratalitiesDead = async(req , res , next)=>{
                 const moralities = await morality.find({FlockID : flockiD})
                 var NumOfDead = 0; 
                 for(var i = 0 ; i < moralities.length ; i++){
-                    NumOfDead += moralities[i].Amount ;
+                    NumOfDead += moralities[i].NumberofDead ;
                 }
                 res.status(200).json({Number : NumOfDead})
                 
