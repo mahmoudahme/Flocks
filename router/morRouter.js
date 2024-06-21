@@ -3,6 +3,6 @@ import {moratalitiesDead} from "../controller/moratalityController.js";
 
 const router = express.Router();
 
-router.get("/" , moratalitiesDead)
+router.get("/:flockiD" , moratalitiesDead)
 
 export default router ; 
