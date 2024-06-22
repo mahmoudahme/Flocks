@@ -1,4 +1,5 @@
 import flock from "../model/flock.js";
+import feedServed from "../model/feedServed.js";
 import {ApiError} from "../Utils/apiError.js";
 import { verifyToken } from "../Utils/verifyToken.js";
 import dotenv from "dotenv" ;
@@ -9,6 +10,17 @@ export const getBirdsOfFlocks = async(req , res , next)=>{
     try {
         verifyToken(req , res , async()=>{
             if(req.user){
+                const feedServedsForWater = await feedServed.find({
+                    Name : "Water" , 
+                    Date:  () => {
+                        const now = new Date();
+                        const year = now.getFullYear();
+                        const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر من 0 إلى 11 لذا نضيف 1
+                        const day = String(now.getDate()).padStart(2, '0');
+                        
+                        // إعادة التاريخ في صيغة "yyyy-mm-dd"
+                        return `${year}-${month}-${day}`;}})
+                
                 const Flocks = await flock.find({UserID : req.user.id})
                 var numberOfBirds = 0; 
                 for(var i = 0 ; i < Flocks.length ; i ++){
@@ -27,16 +39,33 @@ export const getBirdsOfFlocks = async(req , res , next)=>{
 }
 
 export const water = async(req , res , next)=>{
-    try {
+   try {
         verifyToken(req , res , async()=>{
             if(req.user){
+                const waterUsed = 0 ;
+                const feedServedsForWater = await feedServed.find({
+                    Name : "Water" , 
+                    Date:  () => {
+                        const now = new Date();
+                        const year = now.getFullYear();
+                        const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر من 0 إلى 11 لذا نضيف 1
+                        const day = String(now.getDate()).padStart(2, '0');
+                        
+                        // إعادة التاريخ في صيغة "yyyy-mm-dd"
+                        return `${year}-${month}-${day}`;}
+                    });
+
+                for(var i = 0 ; i < feedServedsForWater.length ; i ++){
+                    waterUsed += feedServedsForWater[i].Amount ;
+                }
+                
                 const Flocks = await flock.find({UserID : req.user.id})
                 var numberOfBirds = 0; 
                 for(var i = 0 ; i < Flocks.length ; i ++){
                     numberOfBirds += Flocks[i].number ;
                 }
                 const numberOfLiters = numberOfBirds * 0.5 ;
-                res.status(200).json({Liters : numberOfLiters})
+                res.status(200).json({Liters : numberOfLiters , waterUsed : waterUsed})
             }else{
                 return next(new ApiError(`You are not user` , 404))
             } 
