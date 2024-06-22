@@ -25,3 +25,23 @@ export const getBirdsOfFlocks = async(req , res , next)=>{
         return next(new ApiError(`System Error ${error}` , 404))
     }
 }
+
+export const water = async(req , res , next)=>{
+    try {
+        verifyToken(req , res , async()=>{
+            if(req.user){
+                const Flocks = await flock.find({UserID : req.user.id})
+                var numberOfBirds = 0; 
+                for(var i = 0 ; i < Flocks.length ; i ++){
+                    numberOfBirds += Flocks[i].number ;
+                }
+                const numberOfLiters = numberOfBirds * 0.5 ;
+                res.status(200).json({Liters : numberOfLiters})
+            }else{
+                return next(new ApiError(`You are not user` , 404))
+            } 
+        })
+    } catch (error) {
+        return next(new ApiError(`System Error ${error}` , 404))
+    }
+}
