@@ -59,7 +59,11 @@ export const food = async(req , res , next)=>{
                         feedWithoutWater.push(feedServedsWithoutWater[i].Amount)
                     }
                 }
-                res.status(200).json({feedWithoutWater : feedWithoutWater})
+                var number = 0 ;
+                for(var i = 0 ; i <feedWithoutWater.length ; i++){
+                    number += feedWithoutWater[i]
+                }
+                res.status(200).json({feedWithoutWater : number})
             }else{
                 return next(new ApiError(`You are not user` , 404))
             } 
