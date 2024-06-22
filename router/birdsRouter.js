@@ -5,5 +5,5 @@ const router = express.Router();
 
 router.get("/" , getBirdsOfFlocks)
 router.get("/water" , water)
-router.get("/food" , food)
+router.get("/food/:flockId" , food)
 export default router ; 
