@@ -38,6 +38,27 @@ export const getBirdsOfFlocks = async(req , res , next)=>{
     }
 }
 
+export const food = async(req , res , next)=>{
+     try {
+        verifyToken(req , res , async()=>{
+            if(req.user){
+                var feedWithoutWater = [] ;
+                const feedServedsWithoutWater = await feedServed.find();
+                for(var i = 0 ; i <feedServedsWithoutWater.length ; i++){
+                    if(feedServedsWithoutWater[i].Name =="Water"){
+                    }else{
+                        feedWithoutWater.push(feedServedsWithoutWater[i].Amount)
+                    }
+                }
+                res.status(200).json({feedWithoutWater : feedWithoutWater})
+            }else{
+                return next(new ApiError(`You are not user` , 404))
+            } 
+        })
+    } catch (error) {
+        return next(new ApiError(`System Error ${error}` , 404))
+    }
+}
 export const water = async(req , res , next)=>{
    try {
         verifyToken(req , res , async()=>{
