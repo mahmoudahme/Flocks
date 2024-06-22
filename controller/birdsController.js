@@ -42,7 +42,7 @@ export const water = async(req , res , next)=>{
    try {
         verifyToken(req , res , async()=>{
             if(req.user){
-                const waterUsed = 0 ;
+                var waterUsed = 0 ;
                 const feedServedsForWater = await feedServed.find({
                     Name : "Water" , 
                     Date:  () => {
