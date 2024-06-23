@@ -33,14 +33,18 @@ export const food = async(req , res , next)=>{
             if(req.user){
                 const flockId = req.params.flockId ;
                 var feedWithoutWater = [] ;
-                const feedServedsWithoutWater = await feedServed.find({FlockID : flockId , Date:  () => {
+                const DateOfDay = () => {
                         const now = new Date();
                         const year = now.getFullYear();
                         const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر من 0 إلى 11 لذا نضيف 1
                         const day = String(now.getDate()).padStart(2, '0');
                         
                         // إعادة التاريخ في صيغة "yyyy-mm-dd"
-                        return `${year}-${month}-${day}`;}});
+                        return `${year}-${month}-${day}`;}
+                const feedServedsWithoutWater = await feedServed.find({
+                    FlockID : flockId ,
+                    date : DateOfDay() 
+                });
                 
                 for(var i = 0 ; i <feedServedsWithoutWater.length ; i++){
                     if(feedServedsWithoutWater[i].Name =="Water"){
