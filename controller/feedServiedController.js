@@ -20,7 +20,8 @@ export const createFeedServied = async(req , res , next )=>{
                             Category : req.body.Category, 
                             Amount: req.body.Amount,
                             Note: req.body.Note,
-                            FlockID: req.params.id 
+                            FlockID: req.params.id ,
+                            UserID : req.user.id
                         }) 
                         await newFeedServied.save();
                         res.status(200).json({message : "FeedServied Created"})
