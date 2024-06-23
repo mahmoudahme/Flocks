@@ -76,7 +76,7 @@ export const water = async(req , res , next)=>{
                         return `${year}-${month}-${day}`;}
                 const feedServedsForWater = await feedServed.find({
                     Name : "Water" ,
-                    Date : DateOfDay()
+                    date : DateOfDay()
                     });
                 for(var i = 0 ; i < feedServedsForWater.length ; i ++){
                     waterUsed += feedServedsForWater[i].Amount ;
