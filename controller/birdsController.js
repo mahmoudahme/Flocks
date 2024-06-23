@@ -78,7 +78,6 @@ export const water = async(req , res , next)=>{
                 const feedServedsForWater = await feedServed.find({
                     Name : "Water" 
                     });
-                    console.log(feedServedsForWater)
                 for(var i = 0 ; i < feedServedsForWater.length ; i ++){
                     waterUsed += feedServedsForWater[i].Amount ;
                 }
