@@ -32,13 +32,14 @@ export const createFeedServied = async(req , res , next )=>{
                             },
                             { new: true }
                         )
-                        var notifcation = false ;
                         if(newDatafInventory.Prercent < 50 ){
-                            notifcation = true ;
+                            var notifcation = true ;
+                            res.status(200).json({message : "FeedServied Created" ,notifcation: notifcation})
                         }else{
-                            notifcation = false ;
+                            var notifcation = false ;
+                            res.status(200).json({message : "FeedServied Created" ,notifcation: notifcation})
                         }
-                        res.status(200).json({message : "FeedServied Created" ,notifcation: notifcation})
+                        
                     }else{
                         res.status(200).json({message : "this Quantity isn't enough"})
                     }
