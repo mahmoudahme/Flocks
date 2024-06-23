@@ -32,7 +32,12 @@ const feedServedSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Flock',
         required : true
-    }  
+    },
+     UserID : {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required : true
+    } 
 })
 
 export default mongoose.model("feedServed" , feedServedSchema)
