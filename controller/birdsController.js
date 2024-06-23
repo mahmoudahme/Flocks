@@ -66,9 +66,7 @@ export const water = async(req , res , next)=>{
         verifyToken(req , res , async()=>{
             if(req.user){
                 var waterUsed = 0 ;
-                const feedServedsForWater = await feedServed.find({
-                    Name : "Water" , 
-                    Date:  () => {
+                const DateOfDay = () => {
                         const now = new Date();
                         const year = now.getFullYear();
                         const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر من 0 إلى 11 لذا نضيف 1
@@ -76,6 +74,9 @@ export const water = async(req , res , next)=>{
                         
                         // إعادة التاريخ في صيغة "yyyy-mm-dd"
                         return `${year}-${month}-${day}`;}
+                console.log(DateOfDay)
+                const feedServedsForWater = await feedServed.find({
+                    Name : "Water" 
                     });
                     console.log(feedServedsForWater)
                 for(var i = 0 ; i < feedServedsForWater.length ; i ++){
