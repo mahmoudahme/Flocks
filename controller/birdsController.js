@@ -20,6 +20,7 @@ export const getBirdsOfFlocks = async(req , res , next)=>{
                         
                         // إعادة التاريخ في صيغة "yyyy-mm-dd"
                         return `${year}-${month}-${day}`;}})
+                console.log(feedServedsForWater)
                 
                 const Flocks = await flock.find({UserID : req.user.id})
                 var numberOfBirds = 0; 
