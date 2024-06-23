@@ -9,19 +9,7 @@ dotenv.config({path : 'config/config.env'});
 export const getBirdsOfFlocks = async(req , res , next)=>{
     try {
         verifyToken(req , res , async()=>{
-            if(req.user){
-                const feedServedsForWater = await feedServed.find({
-                    Name : "Water" , 
-                    Date:  () => {
-                        const now = new Date();
-                        const year = now.getFullYear();
-                        const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر من 0 إلى 11 لذا نضيف 1
-                        const day = String(now.getDate()).padStart(2, '0');
-                        
-                        // إعادة التاريخ في صيغة "yyyy-mm-dd"
-                        return `${year}-${month}-${day}`;}})
-                console.log(feedServedsForWater)
-                
+            if(req.user){            
                 const Flocks = await flock.find({UserID : req.user.id})
                 var numberOfBirds = 0; 
                 for(var i = 0 ; i < Flocks.length ; i ++){
@@ -89,7 +77,7 @@ export const water = async(req , res , next)=>{
                         // إعادة التاريخ في صيغة "yyyy-mm-dd"
                         return `${year}-${month}-${day}`;}
                     });
-
+                    console.log(feedServedsForWater)
                 for(var i = 0 ; i < feedServedsForWater.length ; i ++){
                     waterUsed += feedServedsForWater[i].Amount ;
                 }
