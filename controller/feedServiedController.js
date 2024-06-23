@@ -24,15 +24,21 @@ export const createFeedServied = async(req , res , next )=>{
                             UserID : req.user.id
                         }) 
                         await newFeedServied.save();
-                        res.status(200).json({message : "FeedServied Created"})
                         const Quantity2 = conInventory.Quantity2 ;
-                        await consumptionInventory.findByIdAndUpdate(
+                        const newDatafInventory = await consumptionInventory.findByIdAndUpdate(
                             conInventory.id, 
                             { Quantity:conInventory.Quantity - req.body.Amount , 
                               Prercent : ((conInventory.Quantity - req.body.Amount) /Quantity2)*100 
                             },
                             { new: true }
                         )
+                        var notifcation = false ;
+                        if(newDatafInventory.Prercent < 50 ){
+                            notifcation = true ;
+                        }else{
+                            notifcation = false ;
+                        }
+                        res.status(200).json({message : "FeedServied Created" ,notifcation: notifcation})
                     }else{
                         res.status(200).json({message : "this Quantity isn't enough"})
                     }
